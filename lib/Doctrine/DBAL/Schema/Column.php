@@ -16,11 +16,8 @@
  * and is licensed under the MIT license. For more information, see
  * <http://www.doctrine-project.org>.
  */
-
 namespace Doctrine\DBAL\Schema;
-
 use Doctrine\DBAL\Types\Type;
-
 /**
  * Object representation of a database column.
  *
@@ -31,70 +28,61 @@ use Doctrine\DBAL\Types\Type;
 class Column extends AbstractAsset
 {
     /**
+     * @var array
+     */
+    protected $_allowed;
+    /**
      * @var Type
      */
     protected $_type;
-
     /**
      * @var integer|null
      */
     protected $_length = null;
-
     /**
      * @var integer
      */
     protected $_precision = 10;
-
     /**
      * @var integer
      */
     protected $_scale = 0;
-
     /**
      * @var boolean
      */
     protected $_unsigned = false;
-
     /**
      * @var boolean
      */
     protected $_fixed = false;
-
     /**
      * @var boolean
      */
     protected $_notnull = true;
-
     /**
      * @var string|null
      */
     protected $_default = null;
-
     /**
      * @var boolean
      */
     protected $_autoincrement = false;
-
     /**
      * @var array
      */
     protected $_platformOptions = array();
-
     /**
      * @var string|null
      */
     protected $_columnDefinition = null;
-
     /**
      * @var string|null
      */
     protected $_comment = null;
-
     /**
      * @var array
      */
     protected $_customSchemaOptions = array();
-
     /**
      * Creates a new Column.
      *
@@ -108,7 +96,6 @@ class Column extends AbstractAsset
         $this->setType($type);
         $this->setOptions($options);
     }
-
     /**
      * @param array $options
      *
@@ -122,10 +109,8 @@ class Column extends AbstractAsset
                 $this->$method($value);
             }
         }
-
         return $this;
     }
-
     /**
      * @param Type $type
      *
@@ -134,10 +119,8 @@ class Column extends AbstractAsset
     public function setType(Type $type)
     {
         $this->_type = $type;
-
         return $this;
     }
-
     /**
      * @param integer|null $length
      *
@@ -150,10 +133,8 @@ class Column extends AbstractAsset
         } else {
             $this->_length = null;
         }
-
         return $this;
     }
-
     /**
      * @param integer $precision
      *
@@ -164,12 +145,9 @@ class Column extends AbstractAsset
         if (!is_numeric($precision)) {
             $precision = 10; // defaults to 10 when no valid precision is given.
         }
-
         $this->_precision = (int) $precision;
-
         return $this;
     }
-
     /**
      * @param integer $scale
      *
@@ -180,12 +158,9 @@ class Column extends AbstractAsset
         if (!is_numeric($scale)) {
             $scale = 0;
         }
-
         $this->_scale = (int) $scale;
-
         return $this;
     }
-
     /**
      * @param boolean $unsigned
      *
@@ -194,10 +169,8 @@ class Column extends AbstractAsset
     public function setUnsigned($unsigned)
     {
         $this->_unsigned = (bool) $unsigned;
-
         return $this;
     }
-
     /**
      * @param boolean $fixed
      *
@@ -206,10 +179,8 @@ class Column extends AbstractAsset
     public function setFixed($fixed)
     {
         $this->_fixed = (bool) $fixed;
-
         return $this;
     }
-
     /**
      * @param boolean $notnull
      *
@@ -218,10 +189,8 @@ class Column extends AbstractAsset
     public function setNotnull($notnull)
     {
         $this->_notnull = (bool) $notnull;
-
         return $this;
     }
-
     /**
      * @param mixed $default
      *
@@ -230,10 +199,8 @@ class Column extends AbstractAsset
     public function setDefault($default)
     {
         $this->_default = $default;
-
         return $this;
     }
-
     /**
      * @param array $platformOptions
      *
@@ -242,10 +209,8 @@ class Column extends AbstractAsset
     public function setPlatformOptions(array $platformOptions)
     {
         $this->_platformOptions = $platformOptions;
-
         return $this;
     }
-
     /**
      * @param string $name
      * @param mixed  $value
@@ -255,10 +220,8 @@ class Column extends AbstractAsset
     public function setPlatformOption($name, $value)
     {
         $this->_platformOptions[$name] = $value;
-
         return $this;
     }
-
     /**
      * @param string $value
      *
@@ -267,10 +230,8 @@ class Column extends AbstractAsset
     public function setColumnDefinition($value)
     {
         $this->_columnDefinition = $value;
-
         return $this;
     }
-
     /**
      * @return Type
      */
@@ -278,7 +239,6 @@ class Column extends AbstractAsset
     {
         return $this->_type;
     }
-
     /**
      * @return integer|null
      */
@@ -286,7 +246,6 @@ class Column extends AbstractAsset
     {
         return $this->_length;
     }
-
     /**
      * @return integer
      */
@@ -294,7 +253,6 @@ class Column extends AbstractAsset
     {
         return $this->_precision;
     }
-
     /**
      * @return integer
      */
@@ -302,7 +260,6 @@ class Column extends AbstractAsset
     {
         return $this->_scale;
     }
-
     /**
      * @return boolean
      */
@@ -310,7 +267,6 @@ class Column extends AbstractAsset
     {
         return $this->_unsigned;
     }
-
     /**
      * @return boolean
      */
@@ -318,7 +274,6 @@ class Column extends AbstractAsset
     {
         return $this->_fixed;
     }
-
     /**
      * @return boolean
      */
@@ -326,7 +281,6 @@ class Column extends AbstractAsset
     {
         return $this->_notnull;
     }
-
     /**
      * @return string|null
      */
@@ -334,7 +288,6 @@ class Column extends AbstractAsset
     {
         return $this->_default;
     }
-
     /**
      * @return array
      */
@@ -342,7 +295,6 @@ class Column extends AbstractAsset
     {
         return $this->_platformOptions;
     }
-
     /**
      * @param string $name
      *
@@ -352,7 +304,6 @@ class Column extends AbstractAsset
     {
         return isset($this->_platformOptions[$name]);
     }
-
     /**
      * @param string $name
      *
@@ -362,7 +313,6 @@ class Column extends AbstractAsset
     {
         return $this->_platformOptions[$name];
     }
-
     /**
      * @return string|null
      */
@@ -370,7 +320,6 @@ class Column extends AbstractAsset
     {
         return $this->_columnDefinition;
     }
-
     /**
      * @return boolean
      */
@@ -378,7 +327,6 @@ class Column extends AbstractAsset
     {
         return $this->_autoincrement;
     }
-
     /**
      * @param boolean $flag
      *
@@ -387,10 +335,25 @@ class Column extends AbstractAsset
     public function setAutoincrement($flag)
     {
         $this->_autoincrement = $flag;
-
         return $this;
     }
-
+    /**
+     * @return boolean
+     */
+    public function getAllowed()
+    {
+        return $this->_allowed;
+    }
+    /**
+     * @param boolean $allowed
+     *
+     * @return Column
+     */
+    public function setAllowed($allowed)
+    {
+        $this->_allowed = $allowed;
+        return $this;
+    }
     /**
      * @param string $comment
      *
@@ -399,10 +362,8 @@ class Column extends AbstractAsset
     public function setComment($comment)
     {
         $this->_comment = $comment;
-
         return $this;
     }
-
     /**
      * @return string|null
      */
@@ -410,7 +371,6 @@ class Column extends AbstractAsset
     {
         return $this->_comment;
     }
-
     /**
      * @param string $name
      * @param mixed  $value
@@ -420,10 +380,8 @@ class Column extends AbstractAsset
     public function setCustomSchemaOption($name, $value)
     {
         $this->_customSchemaOptions[$name] = $value;
-
         return $this;
     }
-
     /**
      * @param string $name
      *
@@ -433,7 +391,6 @@ class Column extends AbstractAsset
     {
         return isset($this->_customSchemaOptions[$name]);
     }
-
     /**
      * @param string $name
      *
@@ -443,7 +400,6 @@ class Column extends AbstractAsset
     {
         return $this->_customSchemaOptions[$name];
     }
-
     /**
      * @param array $customSchemaOptions
      *
@@ -452,10 +408,8 @@ class Column extends AbstractAsset
     public function setCustomSchemaOptions(array $customSchemaOptions)
     {
         $this->_customSchemaOptions = $customSchemaOptions;
-
         return $this;
     }
-
     /**
      * @return array
      */
@@ -463,7 +417,6 @@ class Column extends AbstractAsset
     {
         return $this->_customSchemaOptions;
     }
-
     /**
      * @return array
      */
@@ -472,6 +425,7 @@ class Column extends AbstractAsset
         return array_merge(array(
             'name'          => $this->_name,
             'type'          => $this->_type,
+            'allowed'       => $this->_allowed,
             'default'       => $this->_default,
             'notnull'       => $this->_notnull,
             'length'        => $this->_length,
