@@ -1,16 +1,10 @@
 {
-    "name": "doctrine/dbal",
+    "name": "vortgo/dbal-laravel-enum",
     "type": "library",
-    "description": "Database Abstraction Layer",
-    "keywords": ["dbal", "database", "persistence", "queryobject"],
+    "description": "DBAL package for laravel migrations. Added field type - enum",
+    "keywords": ["dbal", "database", "persistence", "queryobject", "laravel", "enum"],
     "homepage": "http://www.doctrine-project.org",
     "license": "MIT",
-    "authors": [
-        {"name": "Guilherme Blanco", "email": "guilhermeblanco@gmail.com"},
-        {"name": "Roman Borschel", "email": "roman@code-factory.org"},
-        {"name": "Benjamin Eberlei", "email": "kontakt@beberlei.de"},
-        {"name": "Jonathan Wage", "email": "jonwage@gmail.com"}
-    ],
     "require": {
         "php": "^5.6 || ^7.0",
         "doctrine/common": "~2.4"
