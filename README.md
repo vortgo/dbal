@@ -1,21 +1,13 @@
-# Doctrine DBAL
+# Doctrine DBAL for laravel migrations
 
-| [Master][Master] | [2.5][2.5] |
-|:----------------:|:----------:|
-| [![Build status][Master image]][Master] | [![Build status][2.5 image]][2.5] |
+## Changed files from original package
+dbal/lib/Doctrine/DBAL/Schema/Column.php
 
+dbal/lib/Doctrine/DBAL/Types/EnumType.php
 
-Powerful database abstraction layer with many features for database schema introspection, schema management and PDO abstraction.
+## Usage
 
+When you need changing field enum, just added in your migrations file
 
-## More resources:
-
-* [Website](http://www.doctrine-project.org/projects/dbal.html)
-* [Documentation](http://docs.doctrine-project.org/projects/doctrine-dbal/en/latest/)
-* [Issue Tracker](https://github.com/doctrine/dbal/issues)
-
-
-  [Master image]: https://img.shields.io/travis/doctrine/dbal/master.svg?style=flat-square
-  [Master]: https://travis-ci.org/doctrine/dbal
-  [2.5 image]: https://img.shields.io/travis/doctrine/dbal/2.5.svg?style=flat-square
-  [2.5]: https://github.com/doctrine/dbal/tree/2.5
+Doctrine\DBAL\Types\Type::addType('enum', 'Doctrine\DBAL\Types\EnumType');
+Schema::getConnection()->getDoctrineSchemaManager()->getDatabasePlatform()->registerDoctrineTypeMapping('enum', 'string');

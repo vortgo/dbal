@@ -17,15 +17,39 @@
  * <http://www.doctrine-project.org>.
  */
 
-namespace Doctrine\DBAL\Exception;
+namespace Doctrine\DBAL\Types;
 
-/**
- * Exception for a write operation attempt on a read-only database element detected in the driver.
- *
- * @author Steve Müller <st.mueller@dzh-online.de>
- * @link   www.doctrine-project.org
- * @since  2.5
- */
-class ReadOnlyException extends ServerException
+use Doctrine\DBAL\Platforms\AbstractPlatform;
+
+class EnumType extends Type
 {
+    protected $name;
+    protected $values = array();
+
+    public function getSQLDeclaration(array $fieldDeclaration, AbstractPlatform $platform)
+    {
+        $this->values = $fieldDeclaration['allowed'];
+        $values = array_map(function($val) { return "'".$val."'"; }, $this->values);
+
+        return "ENUM(".implode(", ", $values).") COMMENT '(DC2Type:".$this->name.")'";
+    }
+
+    public function convertToPHPValue($value, AbstractPlatform $platform)
+    {
+        return $value;
+    }
+
+    public function convertToDatabaseValue($value, AbstractPlatform $platform)
+    {
+        if (!in_array($value, $this->values)) {
+            throw new \InvalidArgumentException("Invalid '".$this->name."' value.");
+        }
+        return $value;
+    }
+
+    public function getName()
+    {
+
+        return $this->name;
+    }
 }

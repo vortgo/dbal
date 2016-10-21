@@ -31,6 +31,11 @@ use Doctrine\DBAL\Types\Type;
 class Column extends AbstractAsset
 {
     /**
+     * @var array
+     */
+    protected $_allowed;
+
+    /**
      * @var Type
      */
     protected $_type;
@@ -392,6 +397,26 @@ class Column extends AbstractAsset
     }
 
     /**
+     * @return boolean
+     */
+    public function getAllowed()
+    {
+        return $this->_allowed;
+    }
+
+    /**
+     * @param boolean $allowed
+     *
+     * @return Column
+     */
+    public function setAllowed($allowed)
+    {
+        $this->_allowed = $allowed;
+
+        return $this;
+    }
+
+    /**
      * @param string $comment
      *
      * @return Column
@@ -472,6 +497,7 @@ class Column extends AbstractAsset
         return array_merge(array(
             'name'          => $this->_name,
             'type'          => $this->_type,
+            'allowed'       => $this->_allowed,
             'default'       => $this->_default,
             'notnull'       => $this->_notnull,
             'length'        => $this->_length,
