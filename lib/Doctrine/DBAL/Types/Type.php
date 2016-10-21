@@ -52,6 +52,7 @@ abstract class Type
     const BLOB = 'blob';
     const FLOAT = 'float';
     const GUID = 'guid';
+    const ENUM = 'enum';
 
     /**
      * Map of already instantiated type objects. One instance per type (flyweight).
@@ -85,6 +86,7 @@ abstract class Type
         self::BINARY => 'Doctrine\DBAL\Types\BinaryType',
         self::BLOB => 'Doctrine\DBAL\Types\BlobType',
         self::GUID => 'Doctrine\DBAL\Types\GuidType',
+        self::ENUM => 'Doctrine\DBAL\Types\EnumType',
     );
 
     /**
